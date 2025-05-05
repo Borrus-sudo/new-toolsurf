@@ -6,7 +6,7 @@ export default function ({ tool }: CardProps) {
     return (
         <a target="_blank" style={{ cursor: 'pointer' }} href={tool.link}>
             <Card
-                className="tool-card rounded lh-sm"
+                className="tool-card rounded lh-sm mb-4"
                 style={{ backgroundColor: 'rgb(24, 24, 26, 0.6)' }}
             >
                 <Card.Body style={{ color: 'white' }}>

@@ -15,8 +15,14 @@ body,
 .category:hover {
     background-color: #27272a;
 }
+
+.curr-category {
+    background-color: #27272a;
+
+}
+
 .tool-card:hover {
-    background-color: rgb(24, 24, 26) !important; 
+    background-color: rgb(24, 24, 26) !important;
     /* opacity: 1; */
 }
 

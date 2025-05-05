@@ -11,6 +11,7 @@ import {
     Users
 } from 'lucide-react';
 import { categories } from '../data/tools';
+import React from 'react';
 
 const iconMap = {
     All: Grid,
@@ -21,11 +22,11 @@ const iconMap = {
     Startups: Rocket,
     Video: Video,
     'E-commerce': ShoppingCart,
-    'Social Media':Users,
+    'Social Media': Users,
     Coding: Code,
 };
 
-export default function Sidebar() {
+export default function Sidebar({ setCurr, curr }: { setCurr: React.Dispatch<React.SetStateAction<string>>, curr: string }) {
     return (
         <div
             className="px-3 py-4"
@@ -43,7 +44,7 @@ export default function Sidebar() {
                     fontWeight: 700,
                     fontSize: '1.875rem',
                 }}
-                className="ms-3 mb-4 mx-auto"
+                className="ms-3 mb-5 mx-auto"
             >
                 🌊 ToolSurf
             </div>
@@ -61,7 +62,8 @@ export default function Sidebar() {
                                 fontSize: '0.875rem',
                                 fontWeight: 400,
                             }}
-                            className="hover-bg py-2 px-1 category rounded lh-sm"
+                            className={`py-2 px-1 category rounded lh-sm ${category == curr ? "curr-category" : ""}`}
+                            onClick={() => setCurr(category)}
                         >
                             <Icon
                                 className="me-2"

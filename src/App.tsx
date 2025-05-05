@@ -3,14 +3,20 @@ import './globals.css';
 import Sidebar from './components/Sidebar';
 import Grid from './components/CardGrid';
 import { tools } from './data/tools';
+import type { Tool } from './data/tools';
+import { useMemo, useState } from 'react';
 
 function App() {
-    
+    const [curr, setCurr] = useState("All");
+    const [query, setQuery] = useState("");
+    const filteredTools: Tool[] = useMemo(() => {
+        return tools.filter((tool) => (curr == "All" || curr == tool.category) && (!query || (tool.name.toLowerCase().includes(query) || tool.description.toLowerCase().includes(query))))
+    }, [curr, query])
     return (
         <div id="app">
             <div className="d-flex flex-row h-100 w-100">
-                <Sidebar />
-                <div className=" d-flex flex-column px-3 overflow-auto">
+                <Sidebar setCurr={setCurr} curr={curr} />
+                <div className=" d-flex flex-grow-1 flex-column px-3 overflow-auto">
                     <div
                         style={{
                             padding: '5rem',
@@ -36,10 +42,11 @@ function App() {
                                 borderWidth: '1px',
                                 color: 'white',
                             }}
+                            onChange={(e) => setQuery(e.target.value.toLowerCase())}
                             placeholder="🔎 Discover tools!"
                         />
                     </div>
-                    <Grid tools={tools}></Grid>
+                    <Grid tools={filteredTools}></Grid>
                 </div>
             </div>
         </div>
