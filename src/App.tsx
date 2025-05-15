@@ -7,11 +7,17 @@ import type { Tool } from './data/tools';
 import { useMemo, useState } from 'react';
 
 function App() {
-    const [curr, setCurr] = useState("All");
-    const [query, setQuery] = useState("");
+    const [curr, setCurr] = useState('All');
+    const [query, setQuery] = useState('');
     const filteredTools: Tool[] = useMemo(() => {
-        return tools.filter((tool) => (curr == "All" || curr == tool.category) && (!query || (tool.name.toLowerCase().includes(query) || tool.description.toLowerCase().includes(query))))
-    }, [curr, query])
+        return tools.filter(
+            (tool) =>
+                (curr == 'All' || curr == tool.category) &&
+                (!query ||
+                    tool.name.toLowerCase().includes(query) ||
+                    tool.description.toLowerCase().includes(query))
+        );
+    }, [curr, query]);
     return (
         <div id="app">
             <div className="d-flex flex-row h-100 w-100">
@@ -42,7 +48,9 @@ function App() {
                                 borderWidth: '1px',
                                 color: 'white',
                             }}
-                            onChange={(e) => setQuery(e.target.value.toLowerCase())}
+                            onChange={(e) =>
+                                setQuery(e.target.value.toLowerCase())
+                            }
                             placeholder="🔎 Discover tools!"
                         />
                     </div>
